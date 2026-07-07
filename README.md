@@ -11,28 +11,28 @@ Rebuilt from the Claude Design handoff in `design_handoff_little_owl_website/`.
   - `terms-conditions/index.html`, `privacy/index.html` — legal pages (URLs preserved from the old site)
   - `styles.css` — all styling; design tokens as CSS custom properties at the top
   - `404.html`, `robots.txt`, `sitemap.xml`
-- `resend-worker/send-contact-email.js` — Cloudflare Worker that emails contact-form
-  submissions to stay@littleowlsuffolk.com via Resend
+- `api/contact.js` — Vercel serverless function that emails contact-form submissions
+  to stay@littleowlsuffolk.com via Resend (needs the `RESEND_API_KEY` env var)
+- `vercel.json` — tells Vercel to serve `site/` as the static output (no build step)
+- `resend-worker/send-contact-email.js` — the original Cloudflare Worker version of the
+  email function, kept for reference; `api/contact.js` is the deployed one
 - `smoobu-custom.css` — paste into Smoobu → Configuration → Booking Engine →
   Booking System Settings → Custom style (styles the widget's internals; not part of the site)
 
-## Deploying
+## Deploying (Vercel)
 
-The site is a plain folder — point any static host (Cloudflare Pages, Netlify,
-GitHub Pages) at `site/` with no build command.
+1. Push this repo to GitHub and import it into Vercel (framework preset: **Other**,
+   no build command — `vercel.json` already points the output at `site/`).
+2. In Resend: verify the littleowlsuffolk.com domain, create an API key.
+3. In Vercel → Project → Settings → Environment Variables: add `RESEND_API_KEY`.
+4. In Vercel → Project → Settings → Domains: add `littleowlsuffolk.com` and follow
+   the DNS instructions at the registrar.
 
 ### Contact form
 
 The form in `contact/index.html` posts JSON `{name, email, phone, message}` to the
-URL in the `FORM_ENDPOINT` constant (in the inline script at the bottom of that file).
-While `FORM_ENDPOINT` is empty the form runs in demo mode and simulates success.
-
-To go live:
-1. In Resend: verify the littleowlsuffolk.com domain, create an API key.
-2. Deploy `resend-worker/send-contact-email.js` as a Cloudflare Worker;
-   set the secret `RESEND_API_KEY` (`wrangler secret put RESEND_API_KEY`).
-3. Set `ALLOWED_ORIGIN` in the worker to `https://littleowlsuffolk.com`.
-4. Put the worker URL into `FORM_ENDPOINT`.
+same-origin function at `/api/contact` — no CORS involved. On localhost it runs in
+demo mode (simulates success) since there is no function runtime.
 
 ### Smoobu
 

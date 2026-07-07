@@ -97,9 +97,12 @@
 
 <script>
 (function () {
-  // URL of the deployed send-contact-email worker.
-  // Empty = demo mode (simulates success so the page can be reviewed).
-  var FORM_ENDPOINT = '';
+  // Same-origin Vercel serverless function (api/contact.js).
+  // On localhost there's no function runtime, so run in demo mode
+  // (simulates success) to keep the page reviewable.
+  var FORM_ENDPOINT = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
+    ? ''
+    : '/api/contact';
 
   var form = document.getElementById('contact-form');
   var sent = document.getElementById('cf-sent');
