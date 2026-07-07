@@ -54,7 +54,7 @@ export default async function handler(req, res) {
   if (!upstream.ok) {
     const detail = await upstream.text();
     console.error('Resend error:', detail);
-    res.status(502).json({ error: 'Send failed' });
+    res.status(502).json({ error: 'Send failed', upstreamStatus: upstream.status });
     return;
   }
 
