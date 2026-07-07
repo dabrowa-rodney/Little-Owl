@@ -43,7 +43,7 @@ export default async function handler(req, res) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: `${name} (via website) <contact-form@littleowlsuffolk.com>`,
+      from: `${name} (via website) <contact-form@email.littleowlsuffolk.com>`,
       to: ['stay@littleowlsuffolk.com'],
       reply_to: email,
       subject: 'Little Owl (contact form)',
