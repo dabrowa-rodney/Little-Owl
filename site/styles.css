@@ -35,6 +35,10 @@ a { color: var(--terracotta); text-decoration: none; }
 a:hover { color: var(--terracotta-dark); }
 img { display: block; }
 
+/* The contact form toggles elements via the hidden attribute; explicit
+   display rules (e.g. .form-card form, .form-sent) must not override it */
+[hidden] { display: none !important; }
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
