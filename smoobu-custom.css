@@ -1,0 +1,74 @@
+/* Little Owl, Suffolk — custom CSS for the Smoobu Booking Engine.
+   Paste into Smoobu: Configuration → Booking Engine → Booking System Settings → Custom style.
+   Matches the redesigned littleowlsuffolk.com (cream / ink / terracotta, Karla + Cormorant Garamond). */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Karla:wght@400;600;700&display=swap');
+
+body {
+  font-family: 'Karla', sans-serif;
+  background: transparent;
+  color: #2B2723;
+}
+
+h1, h2, h3, .apartment-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  color: #2B2723;
+}
+
+.iframe .content {
+  background: #FFFFFF;
+  border-radius: 0;
+  border: 0;
+}
+
+/* Primary buttons — ink pill, terracotta on hover */
+#check-availability-button,
+.btn-primary,
+button[type="submit"] {
+  background: #2B2723 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  color: #FAF8F3 !important;
+  font-family: 'Karla', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 12px 28px;
+}
+
+#check-availability-button:hover,
+.btn-primary:hover,
+button[type="submit"]:hover {
+  background: #A97147 !important;
+}
+
+/* Inputs */
+input, select, .form-control {
+  border: 1px solid #E0D7C6 !important;
+  border-radius: 10px !important;
+  color: #2B2723;
+  font-family: 'Karla', sans-serif;
+}
+
+input:focus, select:focus, .form-control:focus {
+  border-color: #A97147 !important;
+  box-shadow: 0 0 0 3px rgba(169, 113, 71, 0.15) !important;
+}
+
+/* Calendar */
+.datetimepicker { background: transparent !important; }
+.datetimepicker td.day.active,
+.datetimepicker td.day.active:hover {
+  background: #A97147 !important;
+  color: #FAF8F3 !important;
+}
+.datetimepicker td.day:hover { background: #F1EBDF !important; }
+.datetimepicker td.day.disabled { color: #C9BFAD !important; }
+
+/* Price + links */
+.price-container, .price { color: #A97147; font-weight: 700; }
+a { color: #A97147; }
+a:hover { color: #8C5A36; }
+
+/* Hide the in-iframe close cross */
+.iframe .show-in-iframe { display: inherit; visibility: hidden; }
